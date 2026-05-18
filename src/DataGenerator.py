@@ -11,7 +11,7 @@ class DataGenerator:
         CData=[]
         for i in range(n):
             self.customer_count += 1
-            cust_id = f"C{self.customer_count}:06d"
+            cust_id = f"C{self.customer_count:06d}"
             CData.append({
                 "customer_id":cust_id,
                 "name":self.faker.name(),
@@ -26,7 +26,7 @@ class DataGenerator:
                 "updated_at":self.faker.date_time_this_year()
                 })
         return pd.DataFrame(CData)
-        
+
     #
     #Generate Accounts
     #
@@ -35,27 +35,27 @@ class DataGenerator:
         for row in custmer_df.itertuples(index=False):
             customer_id=row.customer_id
             create_date=row.created_date
-    
-    
+
+
             num_acct_gen=np.random.randint(1,avg_acct_per_cust+1)
-    
+
             for i in range(num_acct_gen):
                     account_id = f"ACC{self.faker.random_number(digits=10)}"
-    
+
                     account_type = np.random.choice(
                         ["Savings", "Checking", "Credit", "Loan", "Investment"],
                         p=[0.35, 0.35, 0.10, 0.10, 0.10]
                     )
-    
+
                     status = np.random.choice(
                         ["Active", "Dormant", "Closed"],
                         p=[0.85, 0.10, 0.05]
                     )
-    
+
                     balance = round(np.random.uniform(100, 50000), 2)
-    
+
                     open_date = self.faker.date_between(start_date=create_date, end_date="today")
-    
+
                     AData.append({
                         "account_id": account_id,
                         "customer_id": customer_id,
