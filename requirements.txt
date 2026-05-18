@@ -1,0 +1,6 @@
+faker==25.0.0
+pandas==2.2.2
+numpy==1.26.4
+boto3==1.34.50
+python-dateutil==2.9.0
+pyyaml==6.0.1
